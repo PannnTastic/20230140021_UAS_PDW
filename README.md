@@ -39,7 +39,7 @@ SIMPRAK adalah sistem informasi manajemen praktikum berbasis web yang dirancang 
 
 1. **Clone/Download Project**
    ```bash
-   git clone https://github.com/ramaravictor/SistemPengumpulanTugas.git
+   https://github.com/PannnTastic/20230140021_UAS_PDW.git
    ```
 
 2. **Setup Database**
