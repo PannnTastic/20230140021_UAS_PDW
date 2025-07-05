@@ -7,6 +7,62 @@ require_once 'templates/header.php';
 
 // Get course_id from URL parameter
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+if ($course_id === 0) {
+    // Get all courses for this asisten
+    $userCoursesSql = "SELECT * FROM mata_praktikum WHERE asisten_id = ? ORDER BY nama_praktikum ASC";
+    $userCoursesStmt = $conn->prepare($userCoursesSql);
+    $userCoursesStmt->bind_param("i", $_SESSION['user_id']);
+    $userCoursesStmt->execute();
+    $userCoursesResult = $userCoursesStmt->get_result();
+    ?>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Pilih Mata Praktikum</h2>
+        <p class="text-gray-600 mb-6">Pilih mata praktikum untuk mengelola modul</p>
+    </div>
+    
+    <?php if ($userCoursesResult->num_rows > 0): ?>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php while ($course = $userCoursesResult->fetch_assoc()): ?>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">
+                        <?php echo htmlspecialchars($course['nama_praktikum']); ?>
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        <?php echo htmlspecialchars(substr($course['deskripsi'], 0, 100)); ?>
+                        <?php if (strlen($course['deskripsi']) > 100) echo '...'; ?>
+                    </p>
+                    <div class="flex justify-between items-center">
+                        
+                        <a href="modul.php?course_id=<?php echo $course['id']; ?>" 
+                           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                            Kelola Modul
+                        </a>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php else: ?>
+        <div class="text-center py-16 text-gray-500">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z"></path>
+            </svg>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Belum Ada Mata Praktikum</h3>
+            <p class="mb-4">Anda belum memiliki mata praktikum untuk dikelola</p>
+            <a href="mata_praktikum.php" 
+               class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                Buat Mata Praktikum
+            </a>
+        </div>
+    <?php endif; ?>
+    
+    <?php
+    require_once 'templates/footer.php';
+    exit;
+}
+// Debug: Check values
+echo "Course ID: " . $course_id . "<br>";
+echo "User ID: " . $_SESSION['user_id'] . "<br>";
 
 // Verify course ownership
 $courseSql = "SELECT * FROM mata_praktikum WHERE id = ? AND asisten_id = ?";
