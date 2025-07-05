@@ -39,7 +39,7 @@ SIMPRAK adalah sistem informasi manajemen praktikum berbasis web yang dirancang 
 
 1. **Clone/Download Project**
    ```bash
-   git clone https://github.com/ramaravictor/SistemPengumpulanTugas.git
+   https://github.com/PannnTastic/20230140021_UAS_PDW.git
    ```
 
 2. **Setup Database**
@@ -113,6 +113,18 @@ simprak/
 3. Upload materi untuk setiap modul
 4. Pantau laporan yang masuk dari mahasiswa
 5. Berikan nilai dan feedback untuk laporan
+
+### Screenshot UI
+# Dashboard Mahasiswa
+![image](https://github.com/user-attachments/assets/ac255587-de0b-4072-b27c-a8b4ada8e1cc)
+![image](https://github.com/user-attachments/assets/3f3e28b9-8768-4521-ba39-7dd3e49aa38e)
+![image](https://github.com/user-attachments/assets/1e3c9461-b0ba-47b1-8bac-c9893aa9c2f9)
+# Dashboard Asisten
+![Screenshot 2025-07-04 231826](https://github.com/user-attachments/assets/12f67ea8-2f6f-4510-aeca-9996689014b4)
+![image](https://github.com/user-attachments/assets/6287ddea-aa72-4c29-8179-11dd196c5a39)
+![image](https://github.com/user-attachments/assets/35f859bb-faa1-4a38-aa9a-a74b6a0daa6e)
+![image](https://github.com/user-attachments/assets/45fb7cac-299b-488c-afc9-155420812988)
+![image](https://github.com/user-attachments/assets/af4509dd-e0af-4233-851e-8cda6461c4d2)
 
 ## Kontribusi
 Proyek ini dibuat sebagai tugas UAS Praktikum Pengembangan Desain Web. Silakan fork dan berkontribusi untuk pengembangan lebih lanjut.
